@@ -11,7 +11,6 @@ Are they playing in your city? Find out when and where with Python.
 - maybe something else
 
 ### TODO
-- add venue/club of the event
 - update user access token if expired (it expires in few hours)
-- get more events (Tour Dates section on Facebook, residentadvisor.net, ...)
+- get more events (Tour Dates section or Upcoming Gigs on Facebook, residentadvisor.net, ...)
 - user-friendly running commands with args 

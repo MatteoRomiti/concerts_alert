@@ -5,7 +5,7 @@ import requests
 import private
 
 city_of_interest = 'Paris' # where the event should be
-events_of_interest = [] # all the available events in city_of_interest, list of [artist_name, start_time]
+events_of_interest = [] # all the available events in city_of_interest, list of [artist_name, event_date, event_place]
 all_musics_name_id = [] # list of [artist_name, artist_id] 
 # today_date = datetime.datetime.now().strftime("%Y-%m-%d")
 current_timestamp = time.time()
@@ -37,10 +37,15 @@ for n in range(len(all_musics_name_id)): # loop over all the artists
 		for event_number in range(len(artist_events['events']['data'])): # loop over all the events of one artist
 			event_city = 'Not Available'
 			event_date = 'Not Available'
+			event_place = 'Not Available'
 			event_start_timestamp = 0 # when the event is not available, it'll be considered as past
 			try:
 				event_city = artist_events['events']['data'][event_number]['place']['location']['city']					
 				# print "City: " + event_city
+			except: 
+				pass
+			try:
+				event_place = artist_events['events']['data'][event_number]['place']['name']					
 			except: 
 				pass
 				# print "No city available for this event"
@@ -52,7 +57,7 @@ for n in range(len(all_musics_name_id)): # loop over all the artists
 				pass
 				# print "No city start time for this event"
 			if event_city == city_of_interest and current_timestamp < (event_start_timestamp+86400): # why +86400? maybe you want to know if you just missed an event, but also because of TODO1
-				events_of_interest.append([artist_name, event_date])
+				events_of_interest.append([artist_name, event_date, event_place])
 
 	else:
 		pass
@@ -64,3 +69,4 @@ for event in events_of_interest:
 	print "-"*20
 	print "Artist: " + event[0]
 	print "Date: " + event[1][:10]
+	print "Place: " + event[2]
