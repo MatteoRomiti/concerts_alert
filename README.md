@@ -8,7 +8,7 @@ Are they playing in your city? Find out when and where with Python.
 - facebook-sdk
 - user access token
 - requests module
-- maybe something else
+- hopefully nothing else
 
 ### TODO
 - update user access token if expired (it expires in few hours)
