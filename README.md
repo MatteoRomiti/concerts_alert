@@ -6,7 +6,7 @@ Are they playing in your city? Find out when and where with Python.
 
 ### What you need
 - [facebook-sdk](http://facebook-sdk.readthedocs.io/en/latest/)
-- [user access token](https://developers.facebook.com/docs/facebook-login/access-tokens/)
+- [user access token](https://developers.facebook.com/docs/facebook-login/access-tokens/) (get it [here](https://developers.facebook.com/tools/explorer/))
 - requests module
 - hopefully nothing else
 
