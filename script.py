@@ -4,12 +4,12 @@ import facebook
 import requests
 import private
 
-city_of_interest = 'Paris' # where the event should be
-events_of_interest = [] # all the available events in city_of_interest, list of [artist_name, event_date, event_place]
+cities_of_interest = ['Paris', 'Brussels'] # where the event should be TODO2: get cities from user
+events_of_interest = [] # all the available events in cities_of_interest, list of [artist_name, event_date, event_place]
 all_musics_name_id = [] # list of [artist_name, artist_id] 
 # today_date = datetime.datetime.now().strftime("%Y-%m-%d")
 current_timestamp = time.time()
-graph = facebook.GraphAPI(access_token=private.token)
+graph = facebook.GraphAPI(access_token=private.token) # get your token at https://developers.facebook.com/tools/explorer/
 musics = graph.get_connections("me", "music") # my likes about music
 
 print "Retrieving all your Music Likes..."
@@ -25,7 +25,7 @@ while(True):
 		break
 print "Done."
 
-print "Looking for interesting events in " + city_of_interest + "..."
+print "Looking for interesting events..."
 for n in range(len(all_musics_name_id)): # loop over all the artists
 # for n in range(30): # loop over all the artists
 	artist_name = all_musics_name_id[n][0]
@@ -56,7 +56,7 @@ for n in range(len(all_musics_name_id)): # loop over all the artists
 			except: 
 				pass
 				# print "No city start time for this event"
-			if event_city == city_of_interest and current_timestamp < (event_start_timestamp+86400): # why +86400? maybe you want to know if you just missed an event, but also because of TODO1
+			if event_city in cities_of_interest and current_timestamp < (event_start_timestamp+86400): # why +86400? maybe you want to know if you just missed an event, but also because of TODO1
 				events_of_interest.append([artist_name, event_date, event_place])
 
 	else:
