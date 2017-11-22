@@ -1,0 +1,9 @@
+import facebook
+import requests
+user_id = '1504466901'
+app_id = '141979749785560'
+app_secret = '91609466c467b79fdbc42dccef9fde7b'
+print(facebook.GraphAPI().get_app_access_token(app_id,app_secret))
+
+
+https://graph.facebook.com/oauth/access_token?client_id=141979749785560&client_secret=91609466c467b79fdbc42dccef9fde7b&grant_type=fb_exchange_token&fb_exchange_token=EAACEdEose0cBAJUMnzXdkTCqv0vy4eYy8bTuAEXijHB07S6sbYKmZANEmPMxiZCf06gZAMBrRns4ABROrwAMOHz1gEvSA3mBggZAZCYc9IUGEuc8tnYma956h3ZCkYFnJn1YOLaVfJZBKQaZAbBFh5Y0OgJuq5bXQ4JLLBb22y8lkliZA0PVn5LGqexyHZAIvaB2QZD
