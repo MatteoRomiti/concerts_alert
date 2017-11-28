@@ -5,7 +5,7 @@ import requests
 import private
 
 cities_of_interest = ['Paris', 'Brussels'] # where the event should be TODO2: get cities from user
-events_of_interest = [] # all the available events in cities_of_interest, list of [artist_name, event_date, event_place]
+events_of_interest = [] # all the available events in cities_of_interest, list of [artist_name, event_date, event_city, event_place, event_start_timestamp]
 all_musics_name_id = [] # list of [artist_name, artist_id] 
 # today_date = datetime.datetime.now().strftime("%Y-%m-%d")
 current_timestamp = time.time()
@@ -25,7 +25,10 @@ while(True):
 		break
 print "Done."
 
-print "Looking for interesting events..."
+print "Looking for interesting events in:"
+for city in cities_of_interest:
+	print "- " + city
+
 for n in range(len(all_musics_name_id)): # loop over all the artists
 # for n in range(30): # loop over all the artists
 	artist_name = all_musics_name_id[n][0]
@@ -57,16 +60,19 @@ for n in range(len(all_musics_name_id)): # loop over all the artists
 				pass
 				# print "No city start time for this event"
 			if event_city in cities_of_interest and current_timestamp < (event_start_timestamp+86400): # why +86400? maybe you want to know if you just missed an event, but also because of TODO1
-				events_of_interest.append([artist_name, event_date, event_place])
+				events_of_interest.append([artist_name, event_date, event_city, event_place, event_start_timestamp])
 
 	else:
 		pass
 		# print "No public events on Facebook for this artist"
 print "Done."
 
+events_of_interest.sort(key=lambda x: x[-1]) # show the events in chronological order
+
 print "Your interesting events:"
 for event in events_of_interest:
 	print "-"*20
 	print "Artist: " + event[0]
 	print "Date: " + event[1][:10]
-	print "Place: " + event[2]
+	print "City: " + event[2]
+	print "Place: " + event[3]
